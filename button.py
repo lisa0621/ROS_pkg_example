@@ -12,7 +12,7 @@ try:
     while True:
         if GPIO.input(BUTTON_PIN) == GPIO.LOW:
             print('botton')
-        time.sleep(0.1)
+        time.sleep(0.2)
 except KeyboardInterrupt:
     print('close')
 finally:
