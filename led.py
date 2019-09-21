@@ -3,8 +3,8 @@ import rospy
 import RPi.GPIO as gpio
 import time
 gpio.setmode(gpio.BCM)
-gpio.setup(17,gpio.OUT)
-pwm_led=gpio.PWM(17,60)
+gpio.setup(18,gpio.OUT)
+pwm_led=gpio.PWM(18,60)
 pwm_led.start(0)
 print('pwm start')
 chgval=1
