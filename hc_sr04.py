@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 import RPi.GPIO as gpio
 import time
 import rospy
 
 gpio.setmode(gpio.BCM)
 TRIGGER_PIN = 27
-ECHO_PIN    = 22
+ECHO_PIN    = 17
 gpio.setup(TRIGGER_PIN,  gpio.OUT)
 gpio.setup(ECHO_PIN,     gpio.IN)
 gpio.output(TRIGGER_PIN, gpio.LOW)
