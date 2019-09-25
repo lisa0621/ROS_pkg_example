@@ -16,7 +16,7 @@ try:
         if GPIO.input(BUTTON_PIN) == GPIO.LOW:
             ledState = not ledState
             GPIO.output(LED_PIN, ledState)
-            print('Press' + ledState)
+            print('Press' + str(ledState))
         time.sleep(0.1)
 
 except KeyboardInterrupt:
