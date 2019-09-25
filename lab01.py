@@ -7,14 +7,13 @@ gpio.setup(18,gpio.OUT)
 pwm_led=gpio.PWM(18,60)
 pwm_led.start(0)
 print('pwm start')
-chgval=1
-addval=1
-while(True):
-    chgval=chgval+addval
-    pwm_led.ChangeDutyCycle(chgval)
 
-    time.sleep(0.02)
-    if(chgval==1):
-        addval=1
-    elif(chgval==100):
-        addval=-1
+    pwm_led.ChangeDutyCycle(50)
+    pwm_led.ChangeFrequncy(1)
+    time.sleep(0.5)
+    pwm_led.ChangeFrequncy(1*2)
+    time.sleep(1.5)
+    pwm_led.ChangeFrequncy(1)
+    time.sleep(0.5)
+pwm_led.stop()
+gpio.cleanup()
