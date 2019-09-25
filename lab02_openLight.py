@@ -1,24 +1,23 @@
 #!/usr/bin/env python
 import time
-import RPi.GPIO as gpio
+import RPi.GPIO as GPIO
 import rospy
 
-gpio.setmode(gpio.BCM)
-gpio.setup(17, gpio.IN)  # button
-gpio.setup(18, gpio.OUT)  # led
-print('pwm start')
-gpio.output(18, gpio.HIGH)
+BUTTON_PIN = 17
+LED_PIN = 18
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
+GPIO.setup(LED_PIN, GPIO.OUT)  # led
+
 try:
     while True:
-        #print('light off')
-        #gpio.output(18, gpio.LOW)
-
-        if gpio.input(17) == gpio.LOW:
-            time.sleep(0.1)
-            gpio.output(18, gpio.HIGH)
+        button_state = GPIO.input(BUTTON_PIN)
+        if button_state == False:
+            GPIO.output(LED_PIN, True)
+            print('Button Pressed...')
+            time.sleep(0.2)
         else:
-            gpio.output(18, gpio.LOW)
-except KeyboardInterrupt:
-    print('close')
-finally:
-    gpio.cleanup()
+            GPIO.output(LED_PIN, False)
+except:
+    GPIO.cleanup()
