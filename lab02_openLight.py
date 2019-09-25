@@ -9,12 +9,11 @@ GPIO.setup(18, GPIO.OUT)  # led
 
 try:
     while True:
-        button_state = GPIO.input(17)
-        if button_state == False:
-            GPIO.output(18, True)
+        if GPIO.input(17) == GPIO.LOW:
+            GPIO.output(18, GPIO.HIGH)
             print('Button Pressed...')
             time.sleep(0.2)
         else:
-            GPIO.output(18, False)
+            GPIO.output(18, GPIO.LOW)
 except:
     GPIO.cleanup()
