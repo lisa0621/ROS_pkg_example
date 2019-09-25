@@ -3,17 +3,22 @@ import time
 import RPi.GPIO as GPIO
 import rospy
 
+BUTTON_PIN = 17
+LED_PIN = 18
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # button
-GPIO.setup(18, GPIO.OUT)  # led
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(LED_PIN, GPIO.OUT)
 
 try:
     while True:
-        if GPIO.input(17) == GPIO.LOW:
-            GPIO.output(18, GPIO.HIGH)
-            print('Button Pressed...')
-            time.sleep(0.2)
+        if GPIO.input(BUTTON_PIN) == GPIO.LOW:
+            GPIO.output(LED_PIN, GPIO.LOW)
+            print('botton')
+        time.sleep(0.1)
         else:
-            GPIO.output(18, GPIO.LOW)
-except:
+            GPIO.output(LED_PIN, GPIO.HIGH)
+except KeyboardInterrupt:
+    print('close')
+finally:
     GPIO.cleanup()
