@@ -11,12 +11,14 @@ GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(LED_PIN, GPIO.OUT)
 
 ledState = False
+GPIO.output(LED_PIN, ledState)
+
 try:
     while True:
         if GPIO.input(BUTTON_PIN) == GPIO.LOW:
             ledState = not ledState
             GPIO.output(LED_PIN, ledState)
-            print('Press' + str(ledState))
+            print('Press ' + str(ledState))
         time.sleep(0.1)
 
 except KeyboardInterrupt:
