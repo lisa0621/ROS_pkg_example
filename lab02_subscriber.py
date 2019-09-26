@@ -8,28 +8,30 @@ from std_msgs.msg import String
 LED_PIN = 18
 # setmode
 gpio.setmode(gpio.BCM)
-gpio.setup(LED_PIN,gpio.OUT)
-pwm_led=gpio.PWM(LED_PIN,60)
+gpio.setup(LED_PIN, gpio.OUT)
+pwm_led = gpio.PWM(LED_PIN, 60)
 pwm_led.start(0)
 
 # set output
 gpio.output(LED_PIN, gpio.LOW)
 
 tempD = 0
+
+
 def changelight(data):
     distance = data.data
-    chgval=1
-    addval=1
+    chgval = 1
+    addval = 1
     if tempD > distance:
-        chgval=chgval+addval
+        chgval = chgval+addval
     else:
-        chgval=chgval-addval
+        chgval = chgval-addval
 
     pwm_led.ChangeDutyCycle(chgval)
-    print("Distance: %.1f (cm)" % distance)  
+    print("Distance: %.1f (cm)" % distance)
     print("chgval:" + str(chgval))
     time.sleep(0.02)
-    
+
 
 def callback(data):
     select_color = data.data
@@ -68,5 +70,5 @@ if __name__ == '__main__':
             print''
             break
         else:
-            rospy.Subscriber("pub_teleop", String, changelight)
+            rospy.Subscriber("pub_teleop", Int32, changelight)
             rospy.spin()
