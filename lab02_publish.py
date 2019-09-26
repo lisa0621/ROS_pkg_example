@@ -2,7 +2,7 @@
 import RPi.GPIO as gpio
 import rospy
 import time
-from std_msgs.msg import Float64
+from std_msgs.msg import String, Float64, Int32
 import sys
 import select
 import termios
