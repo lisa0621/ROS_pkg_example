@@ -2,7 +2,7 @@
 
 import rospy
 import RPi.GPIO as gpio
-from std_msgs.msg import Float64
+from std_msgs.msg import String
 
 gpio.setwarnings(False)
 
@@ -23,6 +23,8 @@ tempD = 0
 
 def changelight(data):
     distance = data.data
+    rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
+    print rospy.get_name()+"I heard %s", data.data
     chgval = 1
     addval = 1
     if tempD > distance:
@@ -73,5 +75,5 @@ if __name__ == '__main__':
             print''
             break
         else:
-            rospy.Subscriber("pub_teleop", Float64, changelight)
+            rospy.Subscriber("pub_teleop", String, changelight)
             rospy.spin()
