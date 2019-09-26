@@ -27,21 +27,9 @@ def changelight(data):
     #print("Distance: %.1f (cm)" % distance)
     #rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
 
+    chgval = distance // 4
 
-"""     chgval = 1
-    addval = 10
-    print("tempD:" + str(tempD))
-    print("if condition:" + str(tempD > distance))
-    if tempD > distance:
-        chgval = chgval+addval
-        print("chgval+:" + str(chgval))
-    else:
-        chgval = chgval-addval
-        print("chgval-:" + str(chgval)) """
-
-   chgval = distance // 4
-
-   if(chgval < 1):
+    if(chgval < 1):
         chgval = 1
     elif(chgval > 100):
         chgval = 100
