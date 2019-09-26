@@ -1,5 +1,5 @@
 <launch>
     <node name="openlight" pkg="pkg_name" type="lab02_openLight.py" />
     <node name="publisher" pkg="pkg_name" type="lab02_publish.py" />
-    <node name="subscriber" pkg="pkg_name" type="lab02_subscriber.py" />
+    <node name="subscriber" pkg="pkg_name" type="lab02_subscriber.py" output="screen" />
 </launch>
