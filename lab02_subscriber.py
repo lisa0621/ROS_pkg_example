@@ -28,13 +28,18 @@ def changelight(data):
     #rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
 
     chgval = 1
-    addval = 10
+    addval = 3
     if tempD > distance:
         chgval = chgval+addval
         print("chgval+:" + str(chgval))
     else:
         chgval = chgval-addval
         print("chgval-:" + str(chgval))
+
+    if(chgval<1):
+        chgval=1
+    elif(chgval>100):
+        chgval=100
 
     pwm_led.ChangeDutyCycle(chgval)
     print("Distance: %.1f (cm)" % distance)
