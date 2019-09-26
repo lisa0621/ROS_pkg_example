@@ -19,7 +19,7 @@ print('pwm start')
 # set output
 #gpio.output(LED_PIN, gpio.LOW)
 
-tempD = 10
+#tempD = 0
 
 
 def changelight(data):
@@ -27,8 +27,9 @@ def changelight(data):
     #print("Distance: %.1f (cm)" % distance)
     #rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
 
-    chgval = 1
-    addval = 3
+
+"""     chgval = 1
+    addval = 10
     print("tempD:" + str(tempD))
     print("if condition:" + str(tempD > distance))
     if tempD > distance:
@@ -36,16 +37,19 @@ def changelight(data):
         print("chgval+:" + str(chgval))
     else:
         chgval = chgval-addval
-        print("chgval-:" + str(chgval))
+        print("chgval-:" + str(chgval)) """
 
-    if(chgval < 1):
+   chgval = distance // 4
+
+   if(chgval < 1):
         chgval = 1
     elif(chgval > 100):
         chgval = 100
 
-    tempD = distance
+    #tempD = distance
     pwm_led.ChangeDutyCycle(chgval)
     print("Distance: %.1f (cm)" % distance)
+    print("chgval:" + str(chgval))
 
     time.sleep(0.02)
 
