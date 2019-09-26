@@ -4,8 +4,11 @@ import rospy
 import RPi.GPIO as gpio
 from std_msgs.msg import Float64
 
+gpio.setwarnings(False)
+
 # set gpio
 LED_PIN = 18
+
 # setmode
 gpio.setmode(gpio.BCM)
 gpio.setup(LED_PIN, gpio.OUT)
