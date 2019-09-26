@@ -2,7 +2,7 @@
 
 import rospy
 import RPi.GPIO as gpio
-from std_msgs.msg import String
+from std_msgs.msg import String, Float64, Int32
 
 gpio.setwarnings(False)
 
@@ -23,8 +23,9 @@ tempD = 0
 
 def changelight(data):
     distance = data.data
-    rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
-    print rospy.get_name()+"I heard %s", data.data
+    print("Distance: %.1f (cm)" % distance)
+    #rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
+
     chgval = 1
     addval = 1
     if tempD > distance:
@@ -38,33 +39,6 @@ def changelight(data):
     time.sleep(0.02)
 
 
-def callback(data):
-    select_color = data.data
-    trigger = {'R': (red, 1), 'G': (green, 1), 'B': (blue, 1),
-               'r': (red, 1), 'g': (green, 1), 'b': (blue, 1)}
-    close = {'C': (red, green, blue, 0), 'c': (red, green, blue, 0)}
-    if select_color in trigger.keys():
-        print 'The word is {} and Pin is {} '.format(select_color, trigger[select_color][0])
-
-        # close all
-        pin = close['C'][0:3]
-        digital_signal = close['C'][3]
-        for index in range(0, 3):
-            gpio.output(pin[index], digital_signal)
-
-        # light select color
-        pin = trigger[select_color][0]
-        digital_signal = trigger[select_color][1]
-        gpio.output(pin, digital_signal)
-
-    elif select_color in close.keys():
-        pin = close[select_color][0:3]
-        digital_signal = close[select_color][3]
-        for index in range(0, 3):
-            gpio.output(pin[index], digital_signal)
-        print 'Close all.'
-
-
 if __name__ == '__main__':
 
     rospy.init_node('subcriber_teleop', anonymous=True)
@@ -75,5 +49,5 @@ if __name__ == '__main__':
             print''
             break
         else:
-            rospy.Subscriber("pub_teleop", String, changelight)
+            rospy.Subscriber("pub_teleop", Float64, changelight)
             rospy.spin()
