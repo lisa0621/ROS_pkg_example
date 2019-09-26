@@ -2,7 +2,7 @@
 
 import rospy
 import RPi.GPIO as gpio
-from std_msgs.msg import String
+from std_msgs.msg import Float64
 
 # set gpio
 LED_PIN = 18
@@ -70,5 +70,5 @@ if __name__ == '__main__':
             print''
             break
         else:
-            rospy.Subscriber("pub_teleop", Int32, changelight)
+            rospy.Subscriber("pub_teleop", Float64, changelight)
             rospy.spin()
