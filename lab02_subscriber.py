@@ -2,7 +2,7 @@
 
 import rospy
 import RPi.GPIO as gpio
-from std_msgs.msg import String, Float64, Int32
+from std_msgs.msg import Float64
 
 gpio.setwarnings(False)
 

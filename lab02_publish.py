@@ -2,7 +2,7 @@
 import RPi.GPIO as gpio
 import rospy
 import time
-from std_msgs.msg import String, Float64, Int32
+from std_msgs.msg import Float64
 import sys
 import select
 import termios
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     settings = termios.tcgetattr(sys.stdin)
 
     ##  setup the publisher  ##
-    pub = rospy.Publisher('pub_teleop', String, queue_size=10)
+    pub = rospy.Publisher('pub_teleop', Float64, queue_size=10)
     rospy.init_node('publish_teleop', anonymous=True)
     rate = rospy.Rate(10)  # 10hz
 
