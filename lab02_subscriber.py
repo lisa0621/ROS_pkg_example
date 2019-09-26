@@ -43,6 +43,7 @@ def changelight(data):
     elif(chgval > 100):
         chgval = 100
 
+    tempD = distance
     pwm_led.ChangeDutyCycle(chgval)
     print("Distance: %.1f (cm)" % distance)
 
