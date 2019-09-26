@@ -19,7 +19,7 @@ print('pwm start')
 # set output
 #gpio.output(LED_PIN, gpio.LOW)
 
-tempD = 0
+tempD = 10
 
 
 def changelight(data):
@@ -29,6 +29,8 @@ def changelight(data):
 
     chgval = 1
     addval = 3
+    print("tempD:" + str(tempD))
+    print("if condition:" + str(tempD > distance))
     if tempD > distance:
         chgval = chgval+addval
         print("chgval+:" + str(chgval))
@@ -36,10 +38,10 @@ def changelight(data):
         chgval = chgval-addval
         print("chgval-:" + str(chgval))
 
-    if(chgval<1):
-        chgval=1
-    elif(chgval>100):
-        chgval=100
+    if(chgval < 1):
+        chgval = 1
+    elif(chgval > 100):
+        chgval = 100
 
     pwm_led.ChangeDutyCycle(chgval)
     print("Distance: %.1f (cm)" % distance)
