@@ -14,28 +14,31 @@ gpio.setmode(gpio.BCM)
 gpio.setup(LED_PIN, gpio.OUT)
 pwm_led = gpio.PWM(LED_PIN, 60)
 pwm_led.start(0)
+print('pwm start')
 
 # set output
-gpio.output(LED_PIN, gpio.LOW)
+#gpio.output(LED_PIN, gpio.LOW)
 
 tempD = 0
 
 
 def changelight(data):
     distance = data.data
-    print("Distance: %.1f (cm)" % distance)
+    #print("Distance: %.1f (cm)" % distance)
     #rospy.loginfo(rospy.get_name()+"I heard %s", data.data)
 
     chgval = 1
-    addval = 1
+    addval = 10
     if tempD > distance:
         chgval = chgval+addval
+        print("chgval+:" + str(chgval))
     else:
         chgval = chgval-addval
+        print("chgval-:" + str(chgval))
 
     pwm_led.ChangeDutyCycle(chgval)
     print("Distance: %.1f (cm)" % distance)
-    print("chgval:" + str(chgval))
+
     time.sleep(0.02)
 
 
