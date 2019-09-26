@@ -1,13 +1,4 @@
 <launch>
-<group ns="turtlesiml">
-<node pkg="turtlesim" name="sim" type="turtlesim_node"/>
-</group>
-
-<group ns="turtlesim2">
-<node pkg="turtlesim" name="sim" type="turtlesim_node"/>
-</group>
-<node pkg="turtlesim" name="mimic" type="mimic">
-<remap from="input" to="turtlesiml/turtle1"/>
-<remap from="output" to="turtlesim2/turtle1"/>
-</node>
+    <node name="publisher" pkg="lab02" type="lab02_publish.py" />
+    <node name="subscriber" pkg="lab02" type="lab02_subscriber.py" />
 </launch>
